@@ -1175,4 +1175,41 @@ public class CsjStrUtils {
 		return retVal;
 	}
 
+	public static List<String> getThrowableMsg(Throwable e) {
+		// TODO 自動生成されたメソッド・スタブ
+		List<String> retLst = new ArrayList<String>();
+		for (StackTraceElement el : e.getStackTrace()) {
+			retLst.add(el.toString());
+		}
+		return retLst;
+	}
+
+	public static Set<String> getSetFromArray(String[] obj) {
+		
+		Set<String> set = new HashSet<String>();
+		for (String s : obj) {
+			set.add(s);
+		}
+		return set;
+	}
+
+	public static boolean isStrEndLikeSet(String str, Set<String> set) {
+		
+		for(String s : set) {
+			if (str.toLowerCase().endsWith(s.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static boolean isStrFolderLikeSet(String str, Set<String> set) {
+		for(String s : set) {
+			if (str.toLowerCase().contains(CsjProcess.s_f_s+s.toLowerCase()+CsjProcess.s_f_s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 }
