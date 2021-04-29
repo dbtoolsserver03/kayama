@@ -19,9 +19,9 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import jp.co.csj.tools.utils.constant.CsjConst;
+import jp.co.csj.tools.utils.date.CsjDateUtil;
 import jp.co.csj.tools.utils.log.CsjLog4j;
 import jp.co.csj.tools.utils.log.CsjLog5j;
-import jp.co.csj.tools.utils.str.CsjStrUtils;
 
 public class CsjFileUtils {
 	public static void writeWithbBlank(BufferedWriter writer, String str,
@@ -369,5 +369,24 @@ public class CsjFileUtils {
 		} catch (Throwable e) {
 			throw e;
 		}
+	}
+
+	public static String getFileTime(File f, String yyyyMmDdSlash) throws Throwable {
+		return CsjDateUtil.getDateTime(f.lastModified(),yyyyMmDdSlash);
+	}
+
+	public static boolean isSameFile(File f1, File f2, String encode) throws Throwable {
+		List<String> lst1 = getFileContent(f1, encode);
+		List<String> lst2 = getFileContent(f2, encode);
+
+		if (lst1.size()!=lst2.size()) {
+			return false;
+		}
+		for (int i=0; i < lst1.size(); i++) {
+			if (!lst1.get(i).equals(lst2.get(i))) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

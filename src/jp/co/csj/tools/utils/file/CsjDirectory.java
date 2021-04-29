@@ -17,7 +17,6 @@ import java.util.TreeMap;
 
 import jp.co.csj.tools.utils.constant.CsjProcess;
 import jp.co.csj.tools.utils.log.CsjLog4j;
-import jp.co.csj.tools.utils.log.CsjLog5j;
 import jp.co.csj.tools.utils.reg.RegConstStr;
 import jp.co.csj.tools.utils.str.CsjStrUtils;
 /**
@@ -500,5 +499,14 @@ public class CsjDirectory {
 			throw e;
 		}
 	}
+	public static void copyFile(String fromFilePath, String toPath) throws Throwable {
+
+		File fromFile = new File(fromFilePath);
+		File toFile=new File(toPath);
+		toFile.mkdirs();
+		String command = "cmd /c copy "+ fromFile.getAbsolutePath() + " " + toFile.getAbsolutePath() + CsjProcess.s_f_s;
+		Runtime.getRuntime().exec(command).waitFor();
+	}
+
 
 }
