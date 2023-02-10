@@ -1,3 +1,4 @@
+
 package jp.co.csj.tools.utils.poi;
 
 
@@ -38,7 +39,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import jp.co.csj.tools.utils.constant.CsjConst;
 import jp.co.csj.tools.utils.date.CsjDateUtil;
-import jp.co.csj.tools.utils.log.CsjLog4j;
 import jp.co.csj.tools.utils.str.CsjStrUtils;
 
 
@@ -47,6 +47,18 @@ public class CsjPoiUtils {
 	public static final int S_CELL_MAX_NUM_2007 = 1048576;
 	public static final int S_CELL_MAX_NUM_2003 = 32767;
 
+	public static void main(String[] args) {
+		
+			Workbook wb = getWorkBook("tmp\\tmp.xlsx");
+			Sheet st = wb.getSheetAt(0);
+			for (Row row : st) {
+				for (Cell cell : row) {
+					System.out.println(getCellContent(cell, true));
+				}
+			}
+	}
+	
+	
 	 /**
 	 * Remove a row by its index
 	 * @param sheet a Excel sheet
@@ -54,7 +66,6 @@ public class CsjPoiUtils {
 	 * @throws Throwable 
 	 */
 	public static void removeRow(Sheet sheet, int rowIndex) throws Throwable {
-		try {
 		    int lastRowNum=sheet.getLastRowNum();
 		    if(rowIndex>=0&&rowIndex<lastRowNum)
 		        sheet.shiftRows(rowIndex+1,lastRowNum,-1);//将行号为rowIndex+1一直到行号为lastRowNum的单元格全部上移一行，以便删除rowIndex行
@@ -63,15 +74,11 @@ public class CsjPoiUtils {
 		        if(removingRow!=null)
 		            sheet.removeRow(removingRow);
 		    }
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	
 	public static void insertRow(Sheet sheet, int starRow, int rows,boolean isWithContent) throws Throwable {
 
-		try {
 			if (rows <= 0) {
 				return;
 			}
@@ -113,37 +120,26 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 	}
 
 	public static Cell setCellValueWithCs(Sheet sheet, int rowPos, int colNum, String str, CellStyle cs) throws Throwable {
 		Cell cell = null;
-		try {
 			cell = setCellValue(sheet, rowPos, colNum, str);
 			if (cs != null) {
 				cell.setCellStyle(cs);
 				cell.setCellValue(str);
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return cell;
 	}
 	public static Cell setCellValueWithCs(Sheet sheet, int rowPos, int colNum, String str, CellStyle cs, CellStyle csBlank) throws Throwable {
 		Cell cell = null;
-		try {
 			cell = setCellValue(sheet, rowPos, colNum, str);
 			if (CsjStrUtils.isEmpty(str)) {
 				cell.setCellStyle(csBlank);
 			} else {
 				cell.setCellStyle(cs);
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		return cell;
 	}
 
@@ -151,15 +147,11 @@ public class CsjPoiUtils {
 			CellStyle cs) throws Throwable {
 		
 		Cell cell = null;
-		try {
 			cell = setCellValue(sheet, rowPos, colNum, str);
 			if (cell != null) {
 				cell.setCellStyle(cs);
 			}
 			
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return cell;
 	}
@@ -167,7 +159,6 @@ public class CsjPoiUtils {
 	public static Cell setCellValue(Sheet sheet, int rowNum, int colNum, RichTextString val) throws Throwable {
 		
 		Cell cell = null;
-		try {
 			cell = getOrCreateCell(sheet, rowNum, colNum);
 
 			if (CsjStrUtils.isNotEmpty(val) && getExcelMaxRowNum(sheet) < val.length()) {
@@ -177,14 +168,10 @@ public class CsjPoiUtils {
 				cell.setCellValue(val);
 			}
 			
-		} catch (Throwable e) {
-			throw e;
-		}
 		return cell;
 	}
 	public static Cell setCellValue(Sheet sheet, int rowNum, int colNum, String val) throws Throwable {
 		Cell cell = null;
-		try {
 			cell = getOrCreateCell(sheet, rowNum, colNum);
 			if (CsjStrUtils.isNotEmpty(val) && getExcelMaxRowNum(sheet) < val.length()) {
 				throw new Exception("xxxxxxxxxxxxxxxxxxxxxxx");
@@ -193,9 +180,6 @@ public class CsjPoiUtils {
 				cell.setCellValue(val);
 			}
 			
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return cell;
 	}
@@ -203,15 +187,11 @@ public class CsjPoiUtils {
 
 		int maxRow = 0;
 		
-		try {
 			if (sheet instanceof HSSFSheet) {
 				maxRow = S_CELL_MAX_NUM_2003;
 			} else {
 				maxRow = S_CELL_MAX_NUM_2007;
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 	
 		return maxRow;
 	}
@@ -225,7 +205,6 @@ public class CsjPoiUtils {
 	 */
 	public static Cell getOrCreateCell(Sheet sheet, int rowNum, int colNum) throws Throwable {
 		Cell cell = null;
-		try {
 			if (sheet == null) {
 				return null;
 			}
@@ -238,9 +217,6 @@ public class CsjPoiUtils {
 			if (cell == null) {
 				cell = row.createCell(colNum);
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return cell;
 	}
@@ -248,7 +224,6 @@ public class CsjPoiUtils {
 	public static List<String>
 			getCellContents(File inFile, String fromSheetName) throws Throwable {
 		List<String> retList = new ArrayList<String>();
-		try {
 
 			Workbook wb =getWorkBook(inFile.getAbsolutePath());
 
@@ -261,9 +236,6 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			throw e;
-		}
 		return retList;
 	}
 
@@ -271,7 +243,6 @@ public class CsjPoiUtils {
 	public static List<String> getCellContents(File inFile,
 			String fromSheetName, int rowNum) throws Throwable {
 		List<String> retList = new ArrayList<String>();
-		try {
 
 			Workbook wb =getWorkBook(inFile.getAbsolutePath());
 
@@ -285,9 +256,6 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retList;
 	}
@@ -297,7 +265,6 @@ public class CsjPoiUtils {
 
 		List<String> retList = new ArrayList<String>();
 
-		try {
 			if (row != null) {
 				String str = CsjConst.EMPTY;
 				for (Cell cell : row) {
@@ -309,17 +276,12 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			throw e;
-		}
-
 		return retList;
 	}
 	public static List<String> getCellContents(Row row, int colBegin,boolean checkStrikeOut) throws Throwable {
 
 		List<String> retList = new ArrayList<String>();
 
-		try {
 			if (row != null) {
 				String str = CsjConst.EMPTY;
 				for (Cell cell : row) {
@@ -333,16 +295,12 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retList;
 	}
 	public static CsjCellInfo getCellFontByContent(Row row, String str,boolean checkStrikeOut) throws Throwable {
 
 		CsjCellInfo cellInfo =null;
-		try {
 			if (row != null) {
 				for (Cell cell : row) {
 					if (str.equals(getCellContent(cell, checkStrikeOut))) {
@@ -351,9 +309,6 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return cellInfo;
 	}
@@ -384,16 +339,16 @@ public class CsjPoiUtils {
 		if (cs == null) {
 			return null;
 		}
-		retCs.setAlignment(cs.getAlignmentEnum());
-		retCs.setBorderBottom(cs.getBorderBottomEnum());
-		retCs.setBorderLeft(cs.getBorderLeftEnum());
-		retCs.setBorderRight(cs.getBorderRightEnum());
-		retCs.setBorderTop(cs.getBorderTopEnum());
+		retCs.setAlignment(cs.getAlignment());
+		retCs.setBorderBottom(cs.getBorderBottom());
+		retCs.setBorderLeft(cs.getBorderLeft());
+		retCs.setBorderRight(cs.getBorderRight());
+		retCs.setBorderTop(cs.getBorderTop());
 		retCs.setBottomBorderColor(cs.getBottomBorderColor());
 		retCs.setDataFormat(cs.getDataFormat());
 		retCs.setFillBackgroundColor(cs.getFillBackgroundColor());
 		retCs.setFillForegroundColor(cs.getFillForegroundColor());
-		retCs.setFillPattern(cs.getFillPatternEnum());
+		retCs.setFillPattern(cs.getFillPattern());
 		retCs.setFont(createCellFont(wb, cellInfo));
 		retCs.setHidden(cs.getHidden());
 		retCs.setIndention(cs.getIndention());
@@ -403,7 +358,7 @@ public class CsjPoiUtils {
 		retCs.setRotation(cs.getRotation());
 		retCs.setShrinkToFit(cs.getShrinkToFit());
 		retCs.setTopBorderColor(cs.getTopBorderColor());
-		retCs.setVerticalAlignment(cs.getVerticalAlignmentEnum());
+		retCs.setVerticalAlignment(cs.getVerticalAlignment());
 		retCs.setWrapText(cs.getWrapText());
 
 
@@ -424,7 +379,6 @@ public class CsjPoiUtils {
 	public static void testgetCellContents(File inFile, String fromSheetName,
 			int rowNum) throws Throwable {
 
-		try {
 			Workbook wb =getWorkBook(inFile.getAbsolutePath());
 			
 
@@ -434,16 +388,12 @@ public class CsjPoiUtils {
 			FileOutputStream fileOut = new FileOutputStream("d:\\aaa1.xls");
 			wb.write(fileOut);
 			fileOut.close();
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 
 	public static LinkedHashMap<Integer,String> getCellContentMaps(Row row, boolean checkStrikeOut) throws Throwable {
 
 		LinkedHashMap<Integer,String> map = new LinkedHashMap<Integer, String>();
-		try {
 			if (row != null) {
 				String str = CsjConst.EMPTY;
 				for (Cell cell : row) {
@@ -455,16 +405,12 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		return map;
 	}
 	public static List<String> getCellContents(Sheet sheet, int col, int rowMin,int rowMax, boolean checkStrikeOut) throws Throwable {
 
 		List<String> retList = new ArrayList<String>();
 
-		try {
 			String str = CsjConst.EMPTY;
 			for (Row row:  sheet) {
 				int rowNum = row.getRowNum();
@@ -473,17 +419,12 @@ public class CsjPoiUtils {
 					retList.add(str);
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retList;
 	}
 	public static List<String> getCellContents(Row row, int preCol, int endCol, boolean checkStrikeOut) throws Throwable {
 
 		List<String> retList = new ArrayList<String>();
-
-		try {
 			String str = CsjConst.EMPTY;
 			for (Cell cell : row) {
 				int cellCol = cell.getColumnIndex();
@@ -492,9 +433,6 @@ public class CsjPoiUtils {
 					retList.add(str);
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retList;
 	}
@@ -502,7 +440,6 @@ public class CsjPoiUtils {
 
 		LinkedHashMap<String,String> retMap = new LinkedHashMap<String,String>();
 
-		try {
 			String str = CsjConst.EMPTY;
 			for (Cell cell : row) {
 
@@ -511,16 +448,12 @@ public class CsjPoiUtils {
 					retMap.put(String.valueOf(cell.getColumnIndex()), str);
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retMap;
 	}
 	public static String getCellContent(Row row, int colIndex, boolean checkStrikeOut) throws Throwable {
 
 		String retStr = CsjConst.EMPTY;
-		try {
 			if (row == null) {
 				return CsjConst.EMPTY;
 			}
@@ -531,16 +464,12 @@ public class CsjPoiUtils {
 			}
 			retStr = getCellContent(cell, checkStrikeOut);
 			
-		} catch (Throwable e) {
-			throw e;
-		}
 		return retStr;
 	}
 	public static List<String> getCellContents(Sheet sheet, boolean checkStrikeOut) {
 
 		List<String> retList = new ArrayList<String>();
 
-		try {
 
 			String str = CsjConst.EMPTY;
 			for (Row row : sheet) {
@@ -551,15 +480,10 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
-		}
 
 		return retList;
 	}
 	public static void clearCellContents(Sheet sheet,int rowMin,int rowMax,int colMin,int colMax) {
-		try {
 
 			for (Row row : sheet) {
 
@@ -574,11 +498,6 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
-		}
-
 	}
 	public static HashSet<String> getCellContentsMap(String filePath, String sheetNm,boolean checkStrikeOut)throws Throwable {
 		return getCellContentsMap(new File(filePath),sheetNm,checkStrikeOut);
@@ -586,7 +505,6 @@ public class CsjPoiUtils {
 	public static HashSet<String> getCellContentsMap(File f, String sheetNm, boolean checkStrikeOut)throws Throwable {
 		HashSet<String> sSet = new HashSet<String>();
 		
-		try {
 			Workbook wb =getWorkBook(f.getAbsolutePath());
 			String str = CsjConst.EMPTY;
 			
@@ -609,9 +527,6 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		
 		return sSet;
 	}
@@ -619,7 +534,6 @@ public class CsjPoiUtils {
 	public static List<String> getCellContents(String filePath, boolean checkStrikeOut) throws Throwable {
 
 		List<String> retList = new ArrayList<String>();
-		try {
 			File f = new File(filePath);
 			if (f.isFile() == false) {
 				return retList;
@@ -636,24 +550,17 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		return retList;
 	}
 
 	public static String getCellContent(Sheet sheet, int rowIndex, int colIndex, boolean checkStrikeOut) throws Throwable {
 
 		String retVal = CsjConst.EMPTY;
-		try {
 			if (sheet != null) {
 				Row row = sheet.getRow(rowIndex);
 
 				retVal = getCellContent(row, colIndex, checkStrikeOut);
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		return retVal;
 	}
 	public static String getCellContent(String fileAbsPath,String sheetNm, int rowIndex, int colIndex, boolean checkStrikeOut) throws Throwable {
@@ -675,7 +582,6 @@ public class CsjPoiUtils {
 			int colEndIndex, List<String> strList, boolean checkStrikeOut) {
 
 		StringBuffer retSb = new StringBuffer();
-		try {
 
 			for (Row row : sheet) {
 				if (rowBeginIndex <= row.getRowNum() && row.getRowNum() <= rowEndIndex) {
@@ -690,10 +596,6 @@ public class CsjPoiUtils {
 				}
 			}
 
-		} catch (Throwable e) {
-			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
-		}
 
 		return retSb.toString();
 	}
@@ -701,7 +603,6 @@ public class CsjPoiUtils {
 	public static String getCellContent(Cell cell, boolean checkStrikeOut) throws Throwable {
 
 		String retStr = CsjConst.EMPTY;
-		try {
 			if (null == cell) {
 				return retStr;
 			}
@@ -722,9 +623,6 @@ public class CsjPoiUtils {
 				}
 			}
 			retStr = getCellStr(cell);
-		} catch (Throwable e) {
-			throw e;
-		}
 		
 		return retStr;
 	}
@@ -735,7 +633,6 @@ public class CsjPoiUtils {
 			return null;
 		}
 		CsjCellInfo retVal = null;
-		try {
 			retVal = new CsjCellInfo(getCellStr(cell),cell.getRowIndex(),cell.getColumnIndex());
 			Font font = null;
 			if (cell instanceof HSSFCell) {
@@ -750,10 +647,6 @@ public class CsjPoiUtils {
 
 			retVal.setCs(cs);
 			retVal.setFont(font);
-		} catch (Throwable e) {
-			throw e;
-		}
-	
 		return retVal;
 	}
 	/**
@@ -765,22 +658,21 @@ public class CsjPoiUtils {
 	private static String getCellStr(Cell cell) throws Throwable {
 		
 		String retStr = "";
-		try {
 			switch (cell.getCellType()) {
-			case Cell.CELL_TYPE_STRING:
+			case STRING:
 				retStr = cell.getRichStringCellValue().getString();
 				break;
-			case Cell.CELL_TYPE_NUMERIC:
+			case NUMERIC:
 				if (DateUtil.isCellDateFormatted(cell)) {
 					retStr = CsjDateUtil.getFormatDateTime(cell.getDateCellValue(), CsjConst.YYYY_MM_DD_SLASH);
 				} else {
 					retStr = String.valueOf(cell.getNumericCellValue());
 				}
 				break;
-			case Cell.CELL_TYPE_BOOLEAN:
+			case BOOLEAN:
 				retStr = String.valueOf(cell.getBooleanCellValue());
 				break;
-			case Cell.CELL_TYPE_FORMULA:
+			case FORMULA:
 				try {
 					if (DateUtil.isCellDateFormatted(cell)) {
 						retStr = CsjDateUtil.getFormatDateTime(cell.getDateCellValue(), CsjConst.YYYY_MM_DD_SLASH);
@@ -789,33 +681,26 @@ public class CsjPoiUtils {
 						retStr = CsjStrUtils.getNumberByTrimDot0(retStr);
 					}
 				} catch (Throwable e) {
-					CsjLog4j.logger.info(e.getMessage());
 					try {
 						retStr = cell.getRichStringCellValue().getString();
 					} catch (Throwable e1) {
-						CsjLog4j.logger.info(e1.getMessage());
 						try {
 							retStr = CsjDateUtil.getFormatDateTime(cell.getDateCellValue(), CsjConst.YYYY_MM_DD_SLASH);
 						} catch (Throwable e2) {
 							retStr = cell.getCellFormula();
-							CsjLog4j.logger.info(e2.getMessage());
 						}
 					}
 				}
 				break;
 			default:
-				// System.out.println();
+				retStr = String.valueOf(cell.getStringCellValue());
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 		
 		return retStr;
 	}
 
 	
 	public static void setCellComment(Cell cell, RichTextString content, String author) throws Throwable {
-		try {
 			// Create the drawing patriarch. This is the top level container for all shapes including cell comments.
 			Drawing patr = cell.getSheet().createDrawingPatriarch();
 			
@@ -840,13 +725,9 @@ public class CsjPoiUtils {
 
 			// The first way to assign comment to a cell is via XSSFCell.setCellComment method
 			cell.setCellComment(comment);
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	public static void setCellCommentBig(Cell cell, RichTextString content, String author) throws Throwable {
-		try {
 			// Create the drawing patriarch. This is the top level container for all shapes including cell comments.
 			Drawing patr = cell.getSheet().createDrawingPatriarch();
 			//anchor defines size and position of the comment in worksheet
@@ -868,9 +749,6 @@ public class CsjPoiUtils {
 
 			// The first way to assign comment to a cell is via XSSFCell.setCellComment method
 			cell.setCellComment(comment);
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	/**
@@ -882,7 +760,6 @@ public class CsjPoiUtils {
 			boolean isVisable, String user) throws Throwable {
 		// Create the drawing patriarch. This is the top level container for all
 		// shapes including cell comments.
-		try {
 			
 			Comment comment = null;
 			RichTextString string;
@@ -919,20 +796,16 @@ public class CsjPoiUtils {
 			 */
 			comment.setRow(cell.getRowIndex());
 			comment.setColumn(cell.getColumnIndex());
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 
 	public static void setColorForDif(RichTextString oldRichStr,
-			RichTextString newRichStr, Font sFontRed, String enCode) {
+			RichTextString newRichStr, Font sFontRed, String enCode) throws Throwable {
 
 		String oldStr = oldRichStr.getString();
 		String newStr = newRichStr.getString();
 		List<CsjPosition> oldPositionList = new ArrayList<CsjPosition>();
 		List<CsjPosition> newPositionList = new ArrayList<CsjPosition>();
-		try {
 			byte[] oldByteArr = oldStr.getBytes(enCode);
 			byte[] newByteArr = newStr.getBytes(enCode);
 
@@ -958,11 +831,6 @@ public class CsjPoiUtils {
 			for (CsjPosition pos : newPositionList) {
 				newRichStr.applyFont(pos.getStartPos(), pos.getEndPos(), sFontRed);
 			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
-			System.out.println("csj:color can't use!");
-		}
 	}
 
 	/*
@@ -973,34 +841,24 @@ public class CsjPoiUtils {
 	 * @param sheet
 	 */
 	public static void printSheet(String path, Sheet sheet) throws Throwable {
-		try {
 			for (Row row : sheet) {
 				for (Cell cell : row) {
 					String val = getCellContent((Cell) cell, true);
 					if (CsjStrUtils.isNotEmpty(val)) {
-						CsjLog4j.logger.error("file path:["+path+"]sheet:["+sheet.getSheetName()+"]row:[" +  row.getRowNum() + "]col:[" + cell.getColumnIndex() + "]val:["
+						System.out.println("file path:["+path+"]sheet:["+sheet.getSheetName()+"]row:[" +  row.getRowNum() + "]col:[" + cell.getColumnIndex() + "]val:["
 								+ getCellContent( cell, true) + "]");
 					}
 
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	public static void printSheet(String filePath) throws Throwable {
-
-		try {
-			
 			Workbook wb = getWorkBook(filePath);
 			File f = new File(filePath);
 			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
 				printSheet(f.getAbsolutePath(),wb.getSheetAt(i));
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	
@@ -1010,7 +868,6 @@ public class CsjPoiUtils {
 	 * @throws Throwable 
 	 */
 	public static void deleteSheetWithOutNms(Workbook wb, Set<String> sheetNmSet) throws Throwable {
-		try {
 			HashSet<String> set = new HashSet<String>();
 			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
 				Sheet sheet = wb.getSheetAt(i);
@@ -1021,9 +878,6 @@ public class CsjPoiUtils {
 				set.add(snm);
 			}
 			deleteSheetNm(wb, set);
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	
@@ -1033,7 +887,6 @@ public class CsjPoiUtils {
 	 * @throws Throwable 
 	 */
 	public static void deleteSheetWithOutNm(Workbook wb, String sheetNm) throws Throwable {
-		try {
 			HashSet<String> set = new HashSet<String>();
 			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
 				Sheet sheet = wb.getSheetAt(i);
@@ -1044,9 +897,6 @@ public class CsjPoiUtils {
 				set.add(snm);
 			}
 			deleteSheetNm(wb, set);
-		} catch (Throwable e) {
-			throw e;
-		}
 
 	}
 	/**
@@ -1055,7 +905,6 @@ public class CsjPoiUtils {
 	 * @throws Throwable 
 	 */
 	public static void deleteSheetNm(Workbook wb, HashSet<String> set) throws Throwable {
-		try {
 			Iterator iterator = set.iterator();
 			while(iterator.hasNext()){
 				String sheetNm = iterator.next().toString();
@@ -1068,9 +917,6 @@ public class CsjPoiUtils {
 					}
 				}
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 
 	}
@@ -1081,7 +927,6 @@ public class CsjPoiUtils {
 	 */
 	public static void deleteWithOutSheetNm(Workbook wb, HashSet<String> set) throws Throwable {
 
-		try {
 			HashSet<String> deleteSheetNmSet = new HashSet<String>();
 			for (int i = 0; i <wb.getNumberOfSheets(); i++) {
 				String sheetNm = wb.getSheetAt(i).getSheetName();
@@ -1090,9 +935,6 @@ public class CsjPoiUtils {
 				}
 			}
 			deleteSheetNm(wb, deleteSheetNmSet);
-		} catch (Throwable e) {
-			throw e;
-		}
 
 
 	}
@@ -1104,15 +946,11 @@ public class CsjPoiUtils {
 	public static String getCellComment(Cell cell) throws Throwable {
 		
 		String retStr = CsjConst.EMPTY;
-		try {
 			if (cell == null || cell.getCellComment() == null || cell.getCellComment().getString() == null) {
 
 			} else {
 				retStr = cell.getCellComment().getString().getString();
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 
 		return retStr;
 	}
@@ -1185,22 +1023,7 @@ public class CsjPoiUtils {
 		wb.write(fileOut);
 		fileOut.close();
 		}
-	public static void main(String[] args) {
-		
-		try {
-//			FileInputStream fileInputStream = new FileInputStream(new File("C:\\Users\\Think\\Desktop\\日本人姓氏大全集.xls"));
-//			XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
-			Workbook wb = getWorkBook("D:\\IDE\\eclipse-jee-oxygen-M4-win32\\eclipse\\workspace\\CsjToolsPic\\dbInfo\\template\\TableStructTemp.xlsx");
-			Sheet st = wb.getSheetAt(0);
-			for (Row row : st) {
-				for (Cell cell : row) {
-					System.out.println(getCellContent(cell, true));
-				}
-			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	public static List<List<String>> getSchedualContents(String filePath,String sheetNm,boolean checkStrikeOut) throws Throwable {
 		
@@ -1220,7 +1043,6 @@ public class CsjPoiUtils {
 		return 	retLst;
 	}
 	public static void schedualXlsReplace(String filePath,String fileOutPath,String sheetNm,List<List<String>> strLst) throws Throwable{
-		
 		try {
 			File file = new File(filePath);
 			FileInputStream fileIn = new FileInputStream(file);
@@ -1243,9 +1065,6 @@ public class CsjPoiUtils {
 			wb.write(fileOut);
 			fileOut.close();
 			fileIn.close();
-		} catch (Throwable e) {
-			throw e;
-		}
 	}
 	public static Map<Integer,String> getSheetContents(String filePath,String sheetNm,int col,int rowStart,int rowEnd) throws Throwable {
 		Map<Integer,String> retMap = new HashMap<Integer, String>();
@@ -1333,7 +1152,6 @@ public class CsjPoiUtils {
 		if (newSt == null || row == null) {
 			return;
 		}
-		try {
 			for (Cell cell : row) {
 				
 				Cell newCell = setCellValueWithCs(newSt, rowIndex, cell.getColumnIndex(), getCellContent(cell, false), cell.getCellStyle());
@@ -1341,8 +1159,87 @@ public class CsjPoiUtils {
 				newCell.setCellComment(cell.getCellComment());
 				newCell.setCellFormula(cell.getCellFormula());
 			}
-		} catch (Throwable e) {
-			throw e;
-		}
 	}
+}
+class CsjPatr {
+    private Drawing patr = null;
+    private short col1 = 0;
+    private int row1 = 0;
+    private short col2 = 0;
+    private int row2 = 0;
+    /**
+     * @return the patr
+     */
+    public Drawing getPatr() {
+        return patr;
+    }
+    /**
+     * @param patr
+     * @param col1
+     * @param row1
+     * @param col2
+     * @param row2
+     */
+    public CsjPatr(Sheet sheet, int col1, int row1, int col2, int row2) {
+        this.patr = sheet.createDrawingPatriarch();
+        this.col1 = (short)col1;
+        this.row1 = row1;
+        this.col2 = (short)col2;
+        this.row2 = row2;
+    }
+    /**
+     * @param patr the patr to set
+     */
+    public void setPatr(Drawing patr) {
+        this.patr = patr;
+    }
+    /**
+     * @return the col1
+     */
+    public short getCol1() {
+        return col1;
+    }
+    /**
+     * @param col1 the col1 to set
+     */
+    public void setCol1(short col1) {
+        this.col1 = col1;
+    }
+    /**
+     * @return the row1
+     */
+    public int getRow1() {
+        return row1;
+    }
+    /**
+     * @param row1 the row1 to set
+     */
+    public void setRow1(int row1) {
+        this.row1 = row1;
+    }
+    /**
+     * @return the col2
+     */
+    public short getCol2() {
+        return col2;
+    }
+    /**
+     * @param col2 the col2 to set
+     */
+    public void setCol2(short col2) {
+        this.col2 = col2;
+    }
+    /**
+     * @return the row2
+     */
+    public int getRow2() {
+        return row2;
+    }
+    /**
+     * @param row2 the row2 to set
+     */
+    public void setRow2(int row2) {
+        this.row2 = row2;
+    }
+    
 }

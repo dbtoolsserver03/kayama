@@ -20,7 +20,6 @@ import jp.co.csj.tools.utils.constant.CsjConst;
 import jp.co.csj.tools.utils.constant.CsjProcess;
 import jp.co.csj.tools.utils.date.CsjDateUtil;
 import jp.co.csj.tools.utils.file.CsjFileConst;
-import jp.co.csj.tools.utils.log.CsjLog4j;
 import jp.co.csj.tools.utils.poi.CsjPosition;
 import jp.co.csj.tools.utils.reg.RegConstStr;
 
@@ -33,31 +32,6 @@ import jp.co.csj.tools.utils.reg.RegConstStr;
  */
 public class CsjStrUtils {
 
-	/**
-	 * @param text
-	 * @return
-	 */
-	public static String convertTxtToReg(String text) {
-		
-		String retStr = text.replace("\\t", "\t");
-		retStr = retStr.replace("\\0", "\0");
-		retStr = retStr.replace("\\n", "\n");
-		retStr = retStr.replace("\\r", "\r");
-		return retStr;
-	}
-	
-	public static boolean isMatchIgnorReg(String str, String reg) {
-		if (isNotEmpty(str)) {
-			return str.toLowerCase().matches(reg.toLowerCase());
-		}
-		return false;
-	}
-	public static boolean isEndByIgnor(String str, String end) {
-		if (isNotEmpty(str)) {
-			return str.toLowerCase().endsWith(end.toLowerCase());
-		}
-		return false;
-	}
 	public static int getBitesLength(String str) {
 		int ret = 0;
 
@@ -79,7 +53,6 @@ public class CsjStrUtils {
 		}
 		return ret;
 	}
-	// 判断字符串是否为空(为NULL或者为"")
 	public static boolean isEmpty(Object obj) {
 		if (obj == null) {
 			return true;
@@ -681,7 +654,6 @@ public class CsjStrUtils {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
 		}
 		return str;
 	}
@@ -706,7 +678,6 @@ public class CsjStrUtils {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
 		}
 		return str;
 	}
@@ -731,7 +702,6 @@ public class CsjStrUtils {
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
 		}
 		return str;
 	}
@@ -984,7 +954,6 @@ public class CsjStrUtils {
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
 		}
 		// TODO Auto-generated method stub
 		return str;
@@ -1093,6 +1062,12 @@ public class CsjStrUtils {
 		}
 		return str;
 	}
+	public static boolean isEndByIgnor(String str, String end) {
+		if (isNotEmpty(str)) {
+			return str.toLowerCase().endsWith(end.toLowerCase());
+		}
+		return false;
+	}
 	/**
 	 * @param equalSet
 	 * @param val
@@ -1134,12 +1109,12 @@ public class CsjStrUtils {
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			CsjLog4j.logger.debug(e.getMessage());
 			isXlsDateStr = false;
 		}
 
 		return isXlsDateStr;
 	}
+	
 	/**
 	 * @param strDate
 	 * @return

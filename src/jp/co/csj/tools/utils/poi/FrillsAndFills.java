@@ -26,10 +26,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.FillPatternType;
-
-import jp.co.csj.tools.utils.log.CsjLog4j;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 /**
  * Shows how to use various fills.
@@ -47,7 +45,7 @@ public class FrillsAndFills {
 
 			// Aqua background
 			HSSFCellStyle style = wb.createCellStyle();
-			style.setFillBackgroundColor(HSSFColor.AQUA.index);
+			style.setFillBackgroundColor(IndexedColors.AQUA.index);
 			//style.setFillPattern(HSSFCellStyle.BIG_SPOTS)//;
 			HSSFCell cell = row.createCell(0);
 			cell.setCellValue("AQUA");
@@ -56,7 +54,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.AUTOMATIC.index);
+			style.setFillForegroundColor(IndexedColors.AUTOMATIC.getIndex());
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(1);
 			cell.setCellValue("AUTOMATIC");
@@ -65,7 +63,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.BLACK.index);
+			style.setFillForegroundColor(IndexedColors.BLACK.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(2);
 			cell.setCellValue("BLACK");
@@ -74,7 +72,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.BLUE.index);
+			style.setFillForegroundColor(IndexedColors.BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(3);
 			cell.setCellValue("BLUE");
@@ -83,7 +81,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.BLUE_GREY.index);
+			style.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(4);
 			cell.setCellValue("BLUE_GREY");
@@ -92,7 +90,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.BRIGHT_GREEN.index);
+			style.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(5);
 			cell.setCellValue("BRIGHT_GREEN");
@@ -101,7 +99,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.BROWN.index);
+			style.setFillForegroundColor(IndexedColors.BROWN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(6);
 			cell.setCellValue("BROWN");
@@ -110,7 +108,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.CORAL.index);
+			style.setFillForegroundColor(IndexedColors.CORAL.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(7);
 			cell.setCellValue("CORAL");
@@ -119,7 +117,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.CORNFLOWER_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.CORNFLOWER_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(8);
 			cell.setCellValue("CORNFLOWER_BLUE");
@@ -128,7 +126,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.DARK_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.DARK_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(9);
 			cell.setCellValue("DARK_BLUE");
@@ -137,7 +135,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.DARK_GREEN.index);
+			style.setFillForegroundColor(IndexedColors.DARK_GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(10);
 			cell.setCellValue("DARK_GREEN");
@@ -146,7 +144,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.DARK_RED.index);
+			style.setFillForegroundColor(IndexedColors.DARK_RED.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(11);
 			cell.setCellValue("DARK_RED");
@@ -155,7 +153,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.DARK_TEAL.index);
+			style.setFillForegroundColor(IndexedColors.DARK_TEAL.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(12);
 			cell.setCellValue("DARK_TEAL");
@@ -164,7 +162,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.DARK_YELLOW.index);
+			style.setFillForegroundColor(IndexedColors.DARK_YELLOW.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(13);
 			cell.setCellValue("DARK_YELLOW");
@@ -173,7 +171,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GOLD.index);
+			style.setFillForegroundColor(IndexedColors.GOLD.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(14);
 			cell.setCellValue("GOLD");
@@ -182,7 +180,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GREEN.index);
+			style.setFillForegroundColor(IndexedColors.GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(15);
 			cell.setCellValue("GREEN");
@@ -191,7 +189,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
+			style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 			style.setFillPattern(FillPatternType.BIG_SPOTS);
 			cell = row.createCell(16);
 			cell.setCellValue("GREY_25_PERCENT");
@@ -200,7 +198,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+			style.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
 			style.setFillPattern(FillPatternType.BIG_SPOTS);
 			cell = row.createCell(17);
 			cell.setCellValue("GREY_40_PERCENT");
@@ -209,7 +207,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GREY_50_PERCENT.index);
+			style.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.index);
 			style.setFillPattern(FillPatternType.BIG_SPOTS);
 			cell = row.createCell(18);
 			cell.setCellValue("GREY_50_PERCENT");
@@ -218,7 +216,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.GREY_80_PERCENT.index);
+			style.setFillForegroundColor(IndexedColors.GREY_80_PERCENT.index);
 			style.setFillPattern(FillPatternType.BIG_SPOTS);
 			cell = row.createCell(19);
 			cell.setCellValue("GREY_80_PERCENT");
@@ -227,7 +225,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.INDIGO.index);
+			style.setFillForegroundColor(IndexedColors.INDIGO.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(20);
 			cell.setCellValue("INDIGO");
@@ -236,7 +234,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LAVENDER.index);
+			style.setFillForegroundColor(IndexedColors.LAVENDER.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(21);
 			cell.setCellValue("LAVENDER");
@@ -245,7 +243,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LEMON_CHIFFON.index);
+			style.setFillForegroundColor(IndexedColors.LEMON_CHIFFON.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(22);
 			cell.setCellValue("LEMON_CHIFFON");
@@ -254,7 +252,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(23);
 			cell.setCellValue("LIGHT_BLUE");
@@ -263,7 +261,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_CORNFLOWER_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(24);
 			cell.setCellValue("LIGHT_CORNFLOWER_BLUE");
@@ -272,7 +270,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_GREEN.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(25);
 			cell.setCellValue("LIGHT_GREEN");
@@ -281,7 +279,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_ORANGE.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_ORANGE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(26);
 			cell.setCellValue("LIGHT_ORANGE");
@@ -290,7 +288,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_TURQUOISE.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_TURQUOISE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(27);
 			cell.setCellValue("LIGHT_TURQUOISE");
@@ -299,7 +297,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIGHT_YELLOW.index);
+			style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(28);
 			cell.setCellValue("LIGHT_YELLOW");
@@ -308,7 +306,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.LIME.index);
+			style.setFillForegroundColor(IndexedColors.LIME.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(29);
 			cell.setCellValue("LIME");
@@ -317,7 +315,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.MAROON.index);
+			style.setFillForegroundColor(IndexedColors.MAROON.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(30);
 			cell.setCellValue("MAROON");
@@ -326,7 +324,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.OLIVE_GREEN.index);
+			style.setFillForegroundColor(IndexedColors.OLIVE_GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(31);
 			cell.setCellValue("OLIVE_GREEN");
@@ -335,7 +333,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.ORANGE.index);
+			style.setFillForegroundColor(IndexedColors.ORANGE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(32);
 			cell.setCellValue("ORANGE");
@@ -344,7 +342,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.ORCHID.index);
+			style.setFillForegroundColor(IndexedColors.ORCHID.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(33);
 			cell.setCellValue("ORCHID");
@@ -353,7 +351,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.PALE_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.PALE_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(34);
 			cell.setCellValue("PALE_BLUE");
@@ -362,7 +360,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.PLUM.index);
+			style.setFillForegroundColor(IndexedColors.PLUM.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(35);
 			cell.setCellValue("PLUM");
@@ -371,7 +369,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.RED.index);
+			style.setFillForegroundColor(IndexedColors.RED.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(36);
 			cell.setCellValue("RED");
@@ -380,7 +378,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.ROSE.index);
+			style.setFillForegroundColor(IndexedColors.ROSE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(37);
 			cell.setCellValue("ROSE");
@@ -389,7 +387,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.ROYAL_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.ROYAL_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(38);
 			cell.setCellValue("ROYAL_BLUE");
@@ -398,7 +396,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.SEA_GREEN.index);
+			style.setFillForegroundColor(IndexedColors.SEA_GREEN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(39);
 			cell.setCellValue("SEA_GREEN");
@@ -407,7 +405,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
+			style.setFillForegroundColor(IndexedColors.SKY_BLUE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(40);
 			cell.setCellValue("SKY_BLUE");
@@ -416,7 +414,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.TAN.index);
+			style.setFillForegroundColor(IndexedColors.TAN.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(41);
 			cell.setCellValue("TAN");
@@ -425,7 +423,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.TEAL.index);
+			style.setFillForegroundColor(IndexedColors.TEAL.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(42);
 			cell.setCellValue("TEAL");
@@ -434,7 +432,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.TURQUOISE.index);
+			style.setFillForegroundColor(IndexedColors.TURQUOISE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(43);
 			cell.setCellValue("TURQUOISE");
@@ -443,7 +441,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.PINK.index);
+			style.setFillForegroundColor(IndexedColors.PINK.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(44);
 			cell.setCellValue("PINK");
@@ -452,7 +450,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.VIOLET.index);
+			style.setFillForegroundColor(IndexedColors.VIOLET.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(45);
 			cell.setCellValue("VIOLET");
@@ -461,7 +459,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.WHITE.index);
+			style.setFillForegroundColor(IndexedColors.WHITE.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(46);
 			cell.setCellValue("WHITE");
@@ -470,7 +468,7 @@ public class FrillsAndFills {
 			// Orange "foreground", foreground being the fill foreground not the
 			// font color.
 			style = wb.createCellStyle();
-			style.setFillForegroundColor(HSSFColor.YELLOW.index);
+			style.setFillForegroundColor(IndexedColors.YELLOW.index);
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			cell = row.createCell(47);
 			cell.setCellValue("YELLOW");
@@ -485,8 +483,6 @@ public class FrillsAndFills {
 
 		} catch (Throwable e) {
 			e.printStackTrace();
-			CsjLog4j.logger.info(e.getMessage());
-			// TODO: handle exception
 		}
 	}
 }

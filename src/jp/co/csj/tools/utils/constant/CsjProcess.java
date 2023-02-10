@@ -4,12 +4,8 @@
 package jp.co.csj.tools.utils.constant;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.util.Date;
 import java.util.Properties;
-
-import jp.co.csj.tools.utils.date.CsjDateUtil;
 
 /**
  * @author Think
@@ -41,8 +37,6 @@ public class CsjProcess {
 
 	static {
 
-		try {
-			CsjDateUtil.getDate("1901/01/01", CsjConst.YYYY_MM_DD_SLASH);
 			Properties   pp   =   System.getProperties();
 			s_newLine = pp.getProperty( "line.separator");
 			s_f_s = System.getProperty("file.separator");
@@ -55,30 +49,20 @@ public class CsjProcess {
 
 			s_local_os = System.getProperty("os.name");
 			s_local_os_arch = System.getProperty("os.arch");
-			s_local_host =InetAddress.getLocalHost().toString();
+//			s_local_host =InetAddress.getLocalHost().toString();
 			s_user = System.getenv().get("USERNAME");// 获取用户名
 			
 
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	public static void openFile(String filePath)  {
-		try {
+	public static void openFile(String filePath) throws Throwable  {
 			Runtime.getRuntime().exec("cmd /c start "+ filePath);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
-	public static void delFile(String filePath) {
+	public static void delFile(String filePath) throws Throwable {
 
 		Process process = null;
 		File f = new File(filePath);
-		try {
 
 			if (f.isDirectory()) {
 				process = Runtime.getRuntime().exec("cmd /c  rd /q /s " + f.getAbsolutePath());
@@ -90,14 +74,9 @@ public class CsjProcess {
 				System.out.println("error");
 				return;
 			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
 	}
 
-	public static void copyFile(String fromFilePath, String toFilePath) {
-		try {
+	public static void copyFile(String fromFilePath, String toFilePath) throws Throwable {
 			Process process = null;
 			File fromFile = new File(fromFilePath);
 			File toFile = new File(toFilePath);
@@ -106,8 +85,5 @@ public class CsjProcess {
 					+ "\\ /y /e /k /c /R";
 			process = Runtime.getRuntime().exec(batStr);
 			process.waitFor();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
 	}
 }
