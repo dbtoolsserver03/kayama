@@ -47,7 +47,7 @@ public class CsjPoiUtils {
 	public static final int S_CELL_MAX_NUM_2007 = 1048576;
 	public static final int S_CELL_MAX_NUM_2003 = 32767;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		
 			Workbook wb = getWorkBook("tmp\\tmp.xlsx");
 			Sheet st = wb.getSheetAt(0);
@@ -466,7 +466,7 @@ public class CsjPoiUtils {
 			
 		return retStr;
 	}
-	public static List<String> getCellContents(Sheet sheet, boolean checkStrikeOut) {
+	public static List<String> getCellContents(Sheet sheet, boolean checkStrikeOut) throws Throwable {
 
 		List<String> retList = new ArrayList<String>();
 
@@ -579,7 +579,7 @@ public class CsjPoiUtils {
 
 	}
 	public static String getCellAreaContents(Sheet sheet, int rowBeginIndex, int rowEndIndex, int colBeginIndex,
-			int colEndIndex, List<String> strList, boolean checkStrikeOut) {
+			int colEndIndex, List<String> strList, boolean checkStrikeOut) throws Throwable {
 
 		StringBuffer retSb = new StringBuffer();
 
@@ -1043,7 +1043,6 @@ public class CsjPoiUtils {
 		return 	retLst;
 	}
 	public static void schedualXlsReplace(String filePath,String fileOutPath,String sheetNm,List<List<String>> strLst) throws Throwable{
-		try {
 			File file = new File(filePath);
 			FileInputStream fileIn = new FileInputStream(file);
 			
